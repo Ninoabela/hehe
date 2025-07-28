@@ -1,15 +1,12 @@
 from flask import Flask, render_template
+from route_module.views import route_bp
 
 app = Flask(__name__)
+app.register_blueprint(route_bp, url_prefix='/route')
 
 @app.route("/")
 def home():
     return render_template("index.html")
-
-# Example routes for navigation (optional for now)
-@app.route("/route")
-def route():
-    return "Route Optimizer Module"
 
 @app.route("/damage")
 def damage():

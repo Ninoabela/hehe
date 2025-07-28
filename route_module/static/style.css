@@ -1,0 +1,188 @@
+/* Global page style */
+/* OLD HTML GRADIENT BG
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #5F2E82, #4A9C9C );
+  background-attachment: fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+*/
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url("/static/background.png") no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Main container */
+
+.main-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.2); /* semi-transparent white border */
+  border-radius: 12px;
+  background-color: transparent; /* FULLY transparent */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* soft shadow still visible */
+}
+
+/* Title/header */
+.header {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 48px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ✅ Center child elements horizontally */
+  margin: 0 auto;       /* ✅ Center container itself */
+}
+
+
+/* Map box with soft rounded border */
+.map-box {
+  width: 100%;
+  height: 50vh;
+  background-color: #ffffff20;
+  border: 2px solid #ffffff30;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+/* Leaflet map */
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Control panel box */
+.control-box {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffffff20;
+  border: 2px solid #ffffff30;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Distance text */
+#distance {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+}
+
+/* Buttons with white border and transparent body */
+.control-box button {
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.control-box button:hover {
+  background: white;
+  color: #333;
+}
+
+/* NEW: Dropdown positioning container */
+.dropdown-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Input group for dropdowns */
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Rounded input */
+.input-group input {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 12px;
+  border: none;
+}
+
+/* Dropdown arrow button */
+.dropdown-arrow {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-arrow:hover {
+  background: white;
+  color: #333;
+}
+
+/* Dropdown list styling */
+.custom-dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.custom-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.custom-dropdown li:hover {
+  background: #f0f0f0;
+}
