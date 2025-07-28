@@ -1,22 +1,31 @@
 from flask import Flask, render_template
+from route_module.views import route_bp
 from damage_detection import damage_bp
 
 app = Flask(__name__)
-app.register_blueprint(damage_bp, url_prefix='/damage')  # Register your blueprint
 
+# Register Blueprints
+app.register_blueprint(route_bp, url_prefix='/route')
+app.register_blueprint(damage_bp, url_prefix='/damage')
+
+# Main Routes
 @app.route('/')
 def home():
     return render_template('index.html')
 
-@app.route('/route')
+@app.route("/damage")
+def damage():
+    return "Damage Detection Module"
+
+@app.route("/route")
 def route():
     return "Route Optimizer Module"
 
-@app.route('/behavior')
+@app.route("/behavior")
 def behavior():
     return "Driving Behavior Dashboard"
 
-@app.route('/eta')
+@app.route("/eta")
 def eta():
     return "Delivery Time Predictor"
 
