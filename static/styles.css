@@ -6,17 +6,17 @@ body {
     padding: 0;
     transition: background-color 0.5s ease;
     background-image: url('/static/background.png');
-    
+    background-size: cover;
 }
 
 .container {
-    padding: 0 5rem;
+    padding: 0 15rem;
 }
 
 header h1 {
     padding: 5rem 5rem 0 5rem;
     font-size: 8rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 7rem;
     color: #66FCF1;
 }
 
@@ -28,6 +28,10 @@ header p {
 .features p {
     font-size: 1.2rem;
     color: #ffffff;
+}
+
+h3 {
+    margin-bottom: 3rem;
 }
 
 .btn {
@@ -49,11 +53,15 @@ header p {
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
+    gap: 0.5rem;
     margin: 2rem 0;
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: #15171f;
     border: 5px solid #45A29E;
     font-size: medium;
@@ -61,22 +69,23 @@ header p {
     padding: 1.5rem; 
     text-decoration: none;
     color: rgb(255, 255, 255);
-    transition: transform 0.2s ease;
+    transition: transform 0.5s ease;
+    height: 250px;
+    width: 250px;
 }
 .card:hover {
-    background: #45A29E;
-    border-color: #000000;
+    background: #2e7470;
+    border-color: #ffffff;
     transition: background-color 0.6s ease;
-}
-
-.card:hover {
     transform: scale(1.03);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    justify-content: flex-start;
 }
 
 .icon {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    transition: transform 0.5s ease;
 }
 
 .map-preview img {
@@ -90,4 +99,27 @@ footer {
     margin-top: 2rem;
     color: #777;
     font-size: 0.9rem;
+}
+
+.card h3 {
+    font-weight: bold;
+    margin-bottom: 0;
+    transition: transform 0.3s;
+}
+
+.card p {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s, max-height 0.3s;
+    margin-top: 1rem;
+}
+
+.card:hover h3 {
+    transform: translateY(-10px);
+}
+
+.card:hover p {
+    opacity: 1;
+    max-height: 100px;
 }
