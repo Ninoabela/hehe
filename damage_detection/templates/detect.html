@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle Damage Detection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            color:rgb(240, 240, 240);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-image: url('/static/background.png');
+            background-size: cover;
+        }
+        .main-card {
+            background: #15171f;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(31,40,51,0.37);
+            padding: 40px 30px 30px 30px;
+            max-width: 1100px;
+            margin: 60px auto 0 auto;
+        }
+
+        .form-control {
+            background-color: #66FCF1;
+            color: #15171f;
+            border: 2px solid #66FCF1;
+            border-radius: 8px;
+        }
+
+        .form-control::file-selector-button {
+            background-color: #15171f;
+            color: #66FCF1;
+            border: 2px solid #66FCF1;
+            border-radius: 6px;
+            padding: 6px 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .form-control::file-selector-button:hover {
+            color: #15171f !important;
+            background-color: #15171f !important;
+            border: 2px solid #66FCF1;
+        }
+        h2 {
+            color: #66FCF1;
+            font-size: 3rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        h5 {
+            color: #66FCF1;
+            font-weight: 400;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #66FCF1;
+            color: #15171f;
+            border: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: background 0.4s;
+        }
+        .btn-primary:hover {
+            background-color: #15171f;
+            color: #fff;
+        }
+        .upload-section {
+            border: 2px dashed #66FCF1;
+            border-radius: 12px;
+            padding: 30px 20px;
+            background: #15171f;
+            margin-bottom: 30px;
+        }
+        .row {
+            display: flex;
+            gap: 30px;
+        }
+        .column {
+            flex: 1;
+            padding: 0 10px;
+        }
+        .media-title {
+            color: #66FCF1;
+            font-size: 1.2rem;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+        .fixed-size {
+            width: 100%;
+            max-width: 500px;
+            max-height: 350px;
+            border: 2px solid #66FCF1;
+            border-radius: 10px;
+            background: #0B0C10;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 16px 0 #15171f;
+            object-fit: contain;
+        }
+        @media (max-width: 900px) {
+            .main-card { padding: 20px 5px; }
+            .row { flex-direction: column; gap: 0; }
+            .column { padding: 0; }
+        }
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #15171f;
+            color: rgb(240, 240, 240);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .spinner {
+            border: 8px solid #15171f;
+            border-top: 8px solid rgb(240, 240, 240);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+            color: #66FCF1;
+        }
+        .navbar-brand {
+            margin-left: 2rem;
+        }
+        .navbar-nav .nav-item:not(:last-child) {
+            border-right: 2px solid #bebebeff;
+            margin-right: 1rem;
+            padding-right: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #15171f;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Lamina Logistics</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/route">Route Optimizer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/damage/detect">Damage Detection</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/behavior">Driving Behavior</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/eta">Delivery Time Predictor</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-card">
+        <h2>Vehicle Damage Detector</h2>
+        <h5> (PNG, JPG, JPEG, MP4)</h5>
+        <div class="upload-section">
+            <form method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <input class="form-control" type="file" name="media" accept=".png,.jpg,.jpeg,.mp4" multiple required>
+                </div>
+                <button class="btn btn-primary" type="submit">Upload</button>
+            </form>
+        </div>
+        <div class="row">
+                <div id="loading-overlay">
+            <div class="spinner"></div>
+        </div>
+            <div class="column">
+                {% if uploaded_file_urls %}
+                    {% for file_url in uploaded_file_urls %}
+                        {% if file_url.endswith('.mp4') %}
+                            <div class="media-title">Uploaded Video:</div>
+                            <video controls class="fixed-size">
+                                <source src="{{ url_for('static', filename=file_url.split('static/')[-1]) }}" type="video/mp4">
+                            </video>
+                        {% else %}
+                            <div class="media-title">Uploaded Photo:</div>
+                            <img src="{{ url_for('static', filename=file_url) }}" alt="Uploaded Image" class="fixed-size">
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="column">
+                {% if damage_detected_urls %}
+                    {% for damage_url in damage_detected_urls %}
+                        {% if damage_url.endswith('.mp4') %}
+                            <div class="media-title">Damage Detected Video:</div>
+                            <video controls class="fixed-size">
+                                <source src="{{ url_for('static', filename=damage_url.split('static/')[-1]) }}" type="video/mp4">
+                            </video>
+                        {% else %}
+                            <div class="media-title">Damage Detected Photo:</div>
+                            <img src="{{ url_for('static', filename=damage_url.split('static/')[-1]) }}" alt="Detected Image" class="fixed-size">
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if error %}
+        <div class="position-fixed top-0 end-0" style="z-index: 1100">
+            <div id="errorToast" class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ error }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const overlay = document.getElementById('loading-overlay');
+    if (form && overlay) {
+        form.addEventListener('submit', function() {
+            overlay.style.display = 'flex';
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var toastEl = document.getElementById('errorToast');
+  if (toastEl) {
+    var toast = new bootstrap.Toast(toastEl, { delay: 5000 });
+    toast.show();
+  }
+});
+
+</script>
+
+</body>
+
+</html>
