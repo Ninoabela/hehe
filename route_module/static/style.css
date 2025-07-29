@@ -1,39 +1,21 @@
-/* Global page style */
-/* OLD HTML GRADIENT BG
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #5F2E82, #4A9C9C );
-  background-attachment: fixed;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-*/
-
-html, body {
+body {
   height: 100%;
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   background: url("/static/background.png") no-repeat center center fixed;
   background-size: cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 
 /* Main container */
 
 .main-container {
-  max-width: 1000px;
+  max-width: 800px;
+  background-color: #15171fab;
   margin: 40px auto;
   padding: 30px;
-  border: 2px solid #66FCF1; /* semi-transparent white border */
+  border: 2px solid #66fcf2b7; /* semi-transparent white border */
   border-radius: 12px;
-  background-color: transparent; /* FULLY transparent */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* soft shadow still visible */
 }
 
@@ -187,3 +169,52 @@ html, body {
   background: #f0f0f0;
 }
 
+.navbar {
+  box-shadow: 0 2px 10px rgba(102, 252, 241, 0.1);
+  border-bottom: 1px solid rgba(102, 252, 241, 0.2);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.navbar-brand {
+  color: #66FCF1 !important;
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-left: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+  position: relative;
+  color: #eaeaea !important;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  border-radius: 0;
+}
+
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 0%;
+  height: 2px;
+  background-color: #66FCF1;
+  transition: width 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  width: 100%;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+  color: #66FCF1 !important;
+} 
+
+.navbar-nav .nav-item:not(:last-child) {
+  margin-right: 0.5rem;
+}

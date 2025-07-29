@@ -1,38 +1,42 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Logistics</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="stylesheet" href="https://use.typekit.net/xxxxxxx.css">
-    
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Lamina<br>Logistics</h1>
+            <div class="header-brand">
+                <span class="brand-icon"><i class="fa-solid fa-truck-fast"></i></span>
+                <span class="brand-title">Lamina Logistics</span>
+            </div>
         </header>
 
         <section class="features">
             <a href="/route/map" class="card">
-                <div class="icon">📍</div>
+                <div class="icon"><i class="fa-solid fa-route"></i></div>
                 <h3>Route Optimizer</h3>
                 <p>Find the shortest and fastest delivery routes</p>
             </a>
             <a href="/damage/detect" class="card">
-                <div class="icon">🛠️</div>
+                <div class="icon"><i class="fa-solid fa-car-crash"></i></div>
                 <h3>Damage Detection</h3>
                 <p>Detect visible vehicle damage from uploaded images</p>
             </a>
             <a href="/behavior" class="card">
-                <div class="icon">🚗</div>
+                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
                 <h3>Driving Behavior</h3>
                 <p>Visualize driving patterns and safety events</p>
             </a>
             <a href="/eta" class="card">
-                <div class="icon">⏱️</div>
+                <div class="icon"><i class="fa-solid fa-clock"></i></div>
                 <h3>Delivery Time Predictor</h3>
                 <p>Forecast delivery time using machine learning</p>
             </a>
