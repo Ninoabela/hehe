@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from route_module.views import route_bp
+from route_module.route import route_bp
 from damage_detection import damage_bp
 from driving_behavior import behavior_bp
 

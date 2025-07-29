@@ -17,20 +17,40 @@
             border-radius: 18px;
             box-shadow: 0 8px 32px 0 rgba(31,40,51,0.37);
             padding: 40px 30px 30px 30px;
-            max-width: 1100px;
-            margin: 60px auto 0 auto;
+            width: 1100px;
+            margin-top: 0;
+            transition: margin-top 0.5s;
+        }
+
+        .main-card-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px); /* Adjust 80px if your navbar is taller/shorter */
+            transition: justify-content 0.5s ease;
+        }
+
+        body.uploading .main-card-wrapper {
+            justify-content: flex-start;
         }
 
         .form-control {
-            background-color: #66FCF1;
-            color: #15171f;
+            background-color: #303030ff;
+            color: #f1f1f1ff;
             border: 2px solid #66FCF1;
             border-radius: 8px;
         }
+        .form-control:hover {
+            background-color: #222222ff;
+            color: #66FCF1;
+            border: 2px solid #66FCF1;
+            transition: background 0.2s ease;
+        }
 
         .form-control::file-selector-button {
-            background-color: #15171f;
-            color: #66FCF1;
+            background-color: #66FCF1;
+            color: #222222ff;
             border: 2px solid #66FCF1;
             border-radius: 6px;
             padding: 6px 16px;
@@ -38,11 +58,7 @@
             cursor: pointer;
             transition: background 0.2s;
         }
-        .form-control::file-selector-button:hover {
-            color: #15171f !important;
-            background-color: #15171f !important;
-            border: 2px solid #66FCF1;
-        }
+
         h2 {
             color: #66FCF1;
             font-size: 3rem;
@@ -64,10 +80,12 @@
             font-weight: bold;
             letter-spacing: 1px;
             transition: background 0.4s;
+            border: 2px solid #66FCF1;
         }
         .btn-primary:hover {
-            background-color: #15171f;
-            color: #fff;
+            background-color: #e6fffdff;
+            border: 2px solid #66FCF1;
+            color: #07080aff;
         }
         .upload-section {
             border: 2px dashed #66FCF1;
@@ -113,7 +131,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #15171f;
+            background: #15171fa1;
             color: rgb(240, 240, 240);
             align-items: center;
             justify-content: center;
@@ -131,50 +149,89 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-            color: #66FCF1;
+        .navbar {
+            box-shadow: 0 2px 10px rgba(102, 252, 241, 0.1);
+            border-bottom: 1px solid rgba(102, 252, 241, 0.2);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
         }
+
         .navbar-brand {
-            margin-left: 2rem;
+            color: #66FCF1 !important;
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin-left: 0.75rem;
+            letter-spacing: 1px;
         }
+
+        .navbar-nav .nav-link {
+            position: relative;
+            color: #eaeaea !important;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+            border-radius: 0;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 4px;
+            width: 0%;
+            height: 2px;
+            background-color: #66FCF1;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-link.active::after {
+            width: 100%;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link.show {
+            color: #66FCF1 !important;
+        } 
+
         .navbar-nav .nav-item:not(:last-child) {
-            border-right: 2px solid #bebebeff;
-            margin-right: 1rem;
-            padding-right: 1rem;
+            margin-right: 0.5rem;
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #15171f;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Lamina Logistics</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/route">Route Optimizer</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/damage/detect">Damage Detection</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/behavior">Driving Behavior</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/eta">Delivery Time Predictor</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Lamina Logistics</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/route">Route Optimizer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/damage/detect">Damage Detection</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/behavior">Driving Behavior</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/eta">Delivery Time Predictor</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
+  <div class="main-card-wrapper">
     <div class="main-card">
         <h2>Vehicle Damage Detector</h2>
         <h5> (PNG, JPG, JPEG, MP4)</h5>
@@ -222,6 +279,7 @@
             </div>
         </div>
     </div>
+</div>
 
     {% if error %}
         <div class="position-fixed top-0 end-0" style="z-index: 1100">

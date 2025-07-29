@@ -31,7 +31,7 @@ html, body {
   max-width: 1000px;
   margin: 40px auto;
   padding: 30px;
-  border: 2px solid rgba(255, 255, 255, 0.2); /* semi-transparent white border */
+  border: 2px solid #66FCF1; /* semi-transparent white border */
   border-radius: 12px;
   background-color: transparent; /* FULLY transparent */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* soft shadow still visible */
@@ -43,7 +43,7 @@ html, body {
   margin-bottom: 40px;
   font-size: 48px;
   font-weight: bold;
-  color: #fff;
+  color: #66FCF1;
   text-align: center;
   letter-spacing: 1px;
 }
@@ -63,7 +63,7 @@ html, body {
   width: 100%;
   height: 50vh;
   background-color: #ffffff20;
-  border: 2px solid #ffffff30;
+  border: 2px solid #66FCF1;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   overflow: hidden;
@@ -80,7 +80,7 @@ html, body {
   margin-top: 20px;
   padding: 20px;
   background-color: #ffffff20;
-  border: 2px solid #ffffff30;
+  border: 2px solid #66FCF1;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   width: 100%;
@@ -106,7 +106,7 @@ html, body {
   padding: 10px 15px;
   font-size: 14px;
   border-radius: 6px;
-  border: 2px solid white;
+  border: 2px solid #66FCF1;
   background: transparent;
   color: white;
   cursor: pointer;
@@ -146,7 +146,7 @@ html, body {
 .dropdown-arrow {
   padding: 10px 15px;
   font-size: 16px;
-  border: 2px solid white;
+  border: 2px solid #66FCF1;
   background: transparent;
   color: white;
   cursor: pointer;
@@ -168,7 +168,7 @@ html, body {
   max-height: 200px;
   overflow-y: auto;
   background: white;
-  border: 1px solid #ccc;
+  border: 1px solid #66FCF1;
   border-radius: 6px;
   list-style: none;
   margin: 0;
@@ -186,3 +186,4 @@ html, body {
 .custom-dropdown li:hover {
   background: #f0f0f0;
 }
+
