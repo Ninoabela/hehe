@@ -1,33 +1,64 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
     background-color: #0b0c10;
     margin: 0;
     padding: 0;
-    transition: background-color 0.5s ease;
     background-image: url('/static/background.png');
     background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* vertical center */
+    align-items: center;      /* horizontal center */
 }
 
 .container {
-    padding: 0 15rem;
+    width: 100%;
+    max-width: 1500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0;
 }
 
-header h1 {
-    padding: 5rem 5rem 0 5rem;
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.brand-icon {
     font-size: 8rem;
-    margin-bottom: 7rem;
     color: #66FCF1;
 }
 
-header p {
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
-    color: #ffffff;
+.brand-title {
+    font-size: 8rem;
+    font-weight: 1000;
+    color: #66FCF1;
+    letter-spacing: 2px;
 }
-.features p {
-    font-size: 1.2rem;
-    color: #ffffff;
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0 3rem 0;
+    width: 100%;
+    justify-items: center;
 }
 
 h3 {
@@ -53,39 +84,36 @@ h3 {
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0.5rem;
+    gap: 1.5rem;
     margin: 2rem 0;
 }
 
 .card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background: #15171f;
-    border: 5px solid #45A29E;
-    font-size: medium;
-    border-radius: 5px;
-    padding: 1.5rem; 
+    background: #15171ff5;
+    border: none;
+    border-radius: 1.2rem;
+    box-shadow: 0 2px 16px rgba(102,252,241,0.08);
+    padding: 2.5rem 1.5rem 2rem 1.5rem;
     text-decoration: none;
-    color: rgb(255, 255, 255);
-    transition: transform 0.5s ease;
-    height: 250px;
-    width: 250px;
+    color: #fff !important;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    min-height: 260px;
+    position: relative;
 }
 .card:hover {
-    background: #2e7470;
-    border-color: #ffffff;
-    transition: background-color 0.6s ease;
-    transform: scale(1.03);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    justify-content: flex-start;
+    background: #22262e;
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(102,252,241,0.15);
 }
 
-.icon {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    transition: transform 0.5s ease;
+.card .icon {
+    font-size: 2.5rem;
+    color: #66FCF1;
+    margin-bottom: 1.2rem;
+    transition: color 0.2s;
 }
 
 .map-preview img {
@@ -97,14 +125,19 @@ h3 {
 
 footer {
     margin-top: 2rem;
-    color: #777;
-    font-size: 0.9rem;
+    color: #ffffff;
+    font-size: 1rem;
+    text-align: center;
+    opacity: 0.7;
 }
 
 .card h3 {
-    font-weight: bold;
-    margin-bottom: 0;
-    transition: transform 0.3s;
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-align: center;
 }
 
 .card p {
@@ -113,6 +146,13 @@ footer {
     overflow: hidden;
     transition: opacity 0.3s, max-height 0.3s;
     margin-top: 1rem;
+    color: #c7c7c7;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.card:hover .icon {
+    color: #45A29E;
 }
 
 .card:hover h3 {

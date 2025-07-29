@@ -6,4 +6,4 @@ route_bp = Blueprint('route_bp', __name__,
     static_folder='static',
     static_url_path='/route/static')
 
-from . import views
+from . import route

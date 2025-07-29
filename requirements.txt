@@ -5,3 +5,4 @@ numpy
 Pillow
 Werkzeug
 ffmpeg-python
+plotly

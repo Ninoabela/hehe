@@ -3,178 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Vehicle Damage Detection</title>
+    <link rel="stylesheet" href="{{ url_for('damage_bp.static', filename='style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            color:rgb(240, 240, 240);
-            min-height: 100vh;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-image: url('/static/background.png');
-            background-size: cover;
-        }
-        .main-card {
-            background: #15171f;
-            border-radius: 18px;
-            box-shadow: 0 8px 32px 0 rgba(31,40,51,0.37);
-            padding: 40px 30px 30px 30px;
-            max-width: 1100px;
-            margin: 60px auto 0 auto;
-        }
-
-        .form-control {
-            background-color: #66FCF1;
-            color: #15171f;
-            border: 2px solid #66FCF1;
-            border-radius: 8px;
-        }
-
-        .form-control::file-selector-button {
-            background-color: #15171f;
-            color: #66FCF1;
-            border: 2px solid #66FCF1;
-            border-radius: 6px;
-            padding: 6px 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .form-control::file-selector-button:hover {
-            color: #15171f !important;
-            background-color: #15171f !important;
-            border: 2px solid #66FCF1;
-        }
-        h2 {
-            color: #66FCF1;
-            font-size: 3rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        h5 {
-            color: #66FCF1;
-            font-weight: 400;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .btn-primary {
-            background-color: #66FCF1;
-            color: #15171f;
-            border: none;
-            font-weight: bold;
-            letter-spacing: 1px;
-            transition: background 0.4s;
-        }
-        .btn-primary:hover {
-            background-color: #15171f;
-            color: #fff;
-        }
-        .upload-section {
-            border: 2px dashed #66FCF1;
-            border-radius: 12px;
-            padding: 30px 20px;
-            background: #15171f;
-            margin-bottom: 30px;
-        }
-        .row {
-            display: flex;
-            gap: 30px;
-        }
-        .column {
-            flex: 1;
-            padding: 0 10px;
-        }
-        .media-title {
-            color: #66FCF1;
-            font-size: 1.2rem;
-            margin: 20px 0 10px 0;
-            font-weight: 600;
-        }
-        .fixed-size {
-            width: 100%;
-            max-width: 500px;
-            max-height: 350px;
-            border: 2px solid #66FCF1;
-            border-radius: 10px;
-            background: #0B0C10;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 16px 0 #15171f;
-            object-fit: contain;
-        }
-        @media (max-width: 900px) {
-            .main-card { padding: 20px 5px; }
-            .row { flex-direction: column; gap: 0; }
-            .column { padding: 0; }
-        }
-        #loading-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #15171f;
-            color: rgb(240, 240, 240);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        .spinner {
-            border: 8px solid #15171f;
-            border-top: 8px solid rgb(240, 240, 240);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-            color: #66FCF1;
-        }
-        .navbar-brand {
-            margin-left: 2rem;
-        }
-        .navbar-nav .nav-item:not(:last-child) {
-            border-right: 2px solid #bebebeff;
-            margin-right: 1rem;
-            padding-right: 1rem;
-        }
-    </style>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #15171f;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Lamina Logistics</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/route">Route Optimizer</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/damage/detect">Damage Detection</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/behavior">Driving Behavior</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/eta">Delivery Time Predictor</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Lamina Logistics</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/route/map">Route Optimizer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/damage/detect">Damage Detection</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/behavior">Driving Behavior</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/eta">Delivery Time Predictor</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
+  <div class="main-card-wrapper">
     <div class="main-card">
         <h2>Vehicle Damage Detector</h2>
         <h5> (PNG, JPG, JPEG, MP4)</h5>
@@ -222,6 +85,7 @@
             </div>
         </div>
     </div>
+</div>
 
     {% if error %}
         <div class="position-fixed top-0 end-0" style="z-index: 1100">
