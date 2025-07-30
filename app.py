@@ -29,10 +29,6 @@ def damage():
 def route():
     return "Route Optimizer Module"
 
-# @app.route("/behavior")
-# def behavior():
-#    return "Driving Behavior Dashboard"
-
 @app.route("/eta")
 def eta():
     return "Delivery Time Predictor"

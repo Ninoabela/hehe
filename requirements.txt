@@ -6,3 +6,7 @@ Pillow
 Werkzeug
 ffmpeg-python
 plotly
+pandas
+requests
+scikit-learn
+python-dotenv
