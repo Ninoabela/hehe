@@ -6,3 +6,5 @@ Pillow
 Werkzeug
 ffmpeg-python
 plotly
+pandas
+requests
