@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for
 from route_module.route import route_bp
 from damage_detection import damage_bp
 from driving_behavior import behavior_bp
-from delivery_time_predictor.eta_module import eta_bp   # Adjust this path if eta_module.py is in the same directory, or use the correct relative path
+from delivery_time_predictor import eta_bp
 
 
 app = Flask(__name__)
